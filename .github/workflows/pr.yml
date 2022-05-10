@@ -8,7 +8,7 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "runnin pr workflow for ${{ github.event.pull_request.number }}"
+      - run: echo "running pr workflow for ${{ github.event.pull_request.number }}"
       - uses: amannn/action-semantic-pull-request@v4
         id: dispatch_semantic_pull_request
         with:

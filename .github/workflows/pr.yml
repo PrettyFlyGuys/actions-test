@@ -1,6 +1,8 @@
 name: PR checks
 
-on: pull_request
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   trigger-semantic-commit-lint:
@@ -17,6 +19,4 @@ jobs:
           workflow_id: "semantic-commit-lint.yml"
           ref: "main"
           inputs: '{"number": "${{ github.event.pull_request.number }}"}'
-
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

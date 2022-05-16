@@ -23,6 +23,7 @@ jobs:
       - id: checkout_pr
         uses: actions/checkout@v3
         with:
+          ref: "refs/pull/${{ github.event.inputs.number }}/head"
           fetch-depth: 0
       - id: lint_commits
         uses: wagoid/commitlint-github-action@v4

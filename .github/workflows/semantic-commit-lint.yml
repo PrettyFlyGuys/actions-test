@@ -18,6 +18,7 @@ jobs:
           owner: ${{ github.event.repository.owner.login }}
           repo: ${{ github.event.repository.name }}
           pull_number: ${{ github.event.inputs.number }}
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: checkout_pr
         uses: actions/checkout@v3

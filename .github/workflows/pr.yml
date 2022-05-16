@@ -19,4 +19,5 @@ jobs:
           workflow_id: "semantic-commit-lint.yml"
           ref: "main"
           inputs: '{"number": "${{ github.event.pull_request.number }}"}'
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

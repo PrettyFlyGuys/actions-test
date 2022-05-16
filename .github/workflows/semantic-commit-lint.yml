@@ -11,21 +11,21 @@ jobs:
   commitlint:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "PR number -> ${{ github.event.inputs.number }}"
       - id: get_pull
-        run: echo "PR number -> ${{ github.event.inputs.number }}"
         uses: octokit/request-action@v2.x
         with:
           route: GET /repos/{owner}/{repo}/pulls/{pull_number}
           owner: ${{ github.event.repository.owner.login }}
           repo: ${{ github.event.repository.name }}
           pull_number: ${{ github.event.inputs.number }}
+      - run: echo "checking out"
       - id: checkout_pr
-        run: echo "checking out"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - run: echo "linting commits"
       - id: lint_commits
-        run: echo "linting commits"
         uses: wagoid/commitlint-github-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

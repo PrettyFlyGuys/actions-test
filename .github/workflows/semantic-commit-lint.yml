@@ -16,6 +16,6 @@ jobs:
       - id: checkout_pr
         run: echo "checking out"
       - id: lint_commits
-        run: echo "linting commits"
+        run: echo "linting commits1"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

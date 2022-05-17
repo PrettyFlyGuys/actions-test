@@ -26,7 +26,7 @@ jobs:
           ref: "refs/pull/${{ github.event.inputs.number }}/head"
           fetch-depth: 0
       - id: echo sha
-        run: echo "${{ env.GITHUB_SHA }}"
+        run: echo "${{ github.sha }}"
       - id: lint_commits
         uses: wagoid/commitlint-github-action@v4
         env:

@@ -1,33 +1,17 @@
 name: Lint Commit Messages
 
-on: 
-  workflow_dispatch:
-    inputs:
-      number:
-        description: "Pull Request Number"
-        required: true
+on: pull_request
 
 jobs:
   commitlint:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      - id: get_pull
-        uses: octokit/request-action@v2.x
-        with:
-          route: GET /repos/{owner}/{repo}/pulls/{pull_number}
-          owner: ${{ github.event.repository.owner.login }}
-          repo: ${{ github.event.repository.name }}
-          pull_number: ${{ github.event.inputs.number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: checkout_pr
         uses: actions/checkout@v3
         with:
           ref: "refs/pull/${{ github.event.inputs.number }}/head"
           fetch-depth: 0
-      - run: echo "${{ github.sha }}"
-      - run: echo $GITHUB_SHA
-      - run: echo "${{ github.event.inputs.number }}"
       - id: lint_commits
         uses: wagoid/commitlint-github-action@v4
         env:

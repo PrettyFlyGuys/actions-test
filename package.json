@@ -1,0 +1,10 @@
+{
+  "name": "clart",
+  "version": "0.0.0",
+  "description": "foo",
+  "main": "index.js",
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^12.1.4"
+  }
+}

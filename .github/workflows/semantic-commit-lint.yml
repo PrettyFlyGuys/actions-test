@@ -20,4 +20,22 @@ jobs:
         run: npm ci
       - id: lint_commits
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
-          
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ">=16.16.0 16"
+      - run: npm ci
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [14, 16]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.version }}
+      - run: npm ci     
